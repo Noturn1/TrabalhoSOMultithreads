@@ -2,7 +2,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 
-#define SIZE 100  // Tamanho do vetor
+#define SIZE 1000  // Tamanho do vetor
 
 // Função de ordenação por seleção
 void selecao(int *v, int inicio, int fim) {
@@ -71,7 +71,7 @@ void ordenacao_multithread(int *v, int *v_ordenado) {
     for (int i = 0; i < 4; i++) {
         args[i].v = v_ordenado;
         args[i].inicio = i * part_size;
-        args[i].fim = (i == 3) ? SIZE : (i + 1) * part_size;
+        args[i].fim = (i == 3) ? SIZE : (i + 1) * part_size+10;
         pthread_create(&threads[i], NULL, thread_func, &args[i]);
     }
 
@@ -113,7 +113,7 @@ void ordenacao_multithread_sync(int *v, int *v_ordenado) {
     for (int i = 0; i < 4; i++) {
         args[i].v = v_ordenado;
         args[i].inicio = i * part_size;
-        args[i].fim = (i == 3) ? SIZE : (i + 1) * part_size;
+        args[i].fim = (i == 3) ? SIZE : (i + 1) * part_size+10;
         pthread_create(&threads[i], NULL, thread_func_sync, &args[i]);
     }
 
